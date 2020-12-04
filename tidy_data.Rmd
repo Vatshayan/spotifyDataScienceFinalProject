@@ -1,0 +1,53 @@
+---
+title: "Final Project"
+author: "Alison and Walter"
+date: 2020-12-4
+output:
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+# knitr options
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library, include=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+# Details on the datasets  
+
+<!-- -------------------------------------------------- -->
+
+### Spotify dataset: 
+To read the csv of the Spotify data, use this code:
+
+```{r read-spotify}
+filename_spotify <- "./data/Spotify_data.csv"
+df_spotify <- read_csv(filename_spotify)
+df_spotify
+```
+
+### Billboard dataset: 
+To read the excel of the Billboard data, use this code:
+
+```{r read-billboard}
+filename_billboard <- "./data/billboard_data.csv"
+df_billboard <- read_csv(filename_billboard)
+df_billboard
+
+```
+
+### Join Datasets
+The following code joins the two datasets by song title
+
+```{r}
+df_combined_data <-
+  inner_join(df_spotify, df_billboard, by = c("title" = "Song"))
+
+df_combined_data
+```
+
+
