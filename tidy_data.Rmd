@@ -51,3 +51,11 @@ df_combined_data
 ```
 
 
+```{r - basic EDA}
+df_combined_data %>% 
+  arrange(desc(`Peak Position`)) %>% 
+  ggplot() + 
+  geom_point(mapping = aes(x = "Peak Position", y = "Week Position", color = "Weeks on Chart"))
+  
+```
+
