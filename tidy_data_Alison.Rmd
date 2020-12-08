@@ -1,0 +1,87 @@
+---
+title: "Final Project"
+author: "Alison and Walter"
+date: 2020-12-4
+output:
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+# knitr options
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library, include=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+# Details on the datasets  
+
+<!-- -------------------------------------------------- -->
+
+### Spotify dataset: 
+To read the csv of the Spotify data, use this code:
+
+```{r read-spotify}
+filename_spotify <- "./data/Spotify_data.csv"
+df_spotify <- read_csv(filename_spotify)
+df_spotify
+```
+
+### Billboard dataset: 
+To read the excel of the Billboard data, use this code:
+
+```{r read-billboard}
+filename_billboard <- "./data/billboard_data.csv"
+df_billboard <- read_csv(filename_billboard)
+df_billboard
+
+```
+
+### Join Datasets
+The following code joins the two datasets by song title
+
+```{r}
+df_combined_data <-
+  inner_join(df_spotify, df_billboard, by = c("title" = "Song"))
+
+df_combined_data
+
+df_data <-df_combined_data %>%
+  mutate(
+    genre = df_combined_data$'top genre',
+    week_position = df_combined_data$'Week Position',
+    prev_week_pos = df_combined_data$'Previous Week Position',
+    peak_position = df_combined_data$'Peak Position',
+    weeks_on_chart = df_combined_data$'Weeks on Chart'
+    ) %>%
+  select(-c(
+    'Week Position',
+    'Weeks on Chart',
+    'top genre',
+    'Previous Week Position',
+    'Peak Position'
+    ))
+
+df_data
+```
+
+
+```{r - basic EDA}
+df_data %>% 
+  arrange(desc(peak_position)) %>% 
+  ggplot() + 
+  geom_point(mapping = aes(x = peak_position, y = week_position, color = weeks_on_chart))
+  
+```
+```{r}
+df_data %>% 
+  filter(weeks_on_chart==1) %>%
+  arrange(desc(week_position))%>%
+  ggplot() + 
+  geom_point(mapping = aes(x = bpm, y = week_position, color = genre))
+  
+```
+
