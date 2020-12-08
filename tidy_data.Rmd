@@ -22,12 +22,12 @@ library(readxl)
 <!-- -------------------------------------------------- -->
 
 ### Spotify dataset: 
-To read the csv of the Spotify data, use this code:
+To read the csv of the song geature data data, use this code:
 
-```{r read-spotify}
-filename_spotify <- "./data/Spotify_data.csv"
-df_spotify <- read_csv(filename_spotify)
-df_spotify
+```{r read-feature}
+filename_feature <- "./data/Song_Features.xlsx"
+df_feature <- read_excel(filename_feature)
+df_feature
 ```
 
 ### Billboard dataset: 
@@ -45,17 +45,27 @@ The following code joins the two datasets by song title
 
 ```{r}
 df_combined_data <-
-  inner_join(df_spotify, df_billboard, by = c("title" = "Song"))
+  inner_join(df_feature, df_billboard, by = "SongID")
 
-df_combined_data
+##Change all the variable names
+df_data <-df_combined_data %>%
+  mutate(
+    week_position = df_combined_data$'Week Position',
+    prev_week_pos = df_combined_data$'Previous Week Position',
+    peak_position = df_combined_data$'Peak Position',
+    weeks_on_chart = df_combined_data$'Weeks on Chart'
+    ) %>%
+  select(-c(
+    'Week Position',
+    'Weeks on Chart',
+    'Previous Week Position',
+    'Peak Position',
+    'url',
+    'spotify_track_preview_url',
+    'spotify_track_id'
+    ))
+df_data %>% summary
+
+write.csv(df_data, './data/df_data.csv')
+
 ```
-
-
-```{r - basic EDA}
-df_combined_data %>% 
-  arrange(desc(`Peak Position`)) %>% 
-  ggplot() + 
-  geom_point(mapping = aes(x = "Peak Position", y = "Week Position", color = "Weeks on Chart"))
-  
-```
-
