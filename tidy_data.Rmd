@@ -63,9 +63,13 @@ df_data <-df_combined_data %>%
     'url',
     'spotify_track_preview_url',
     'spotify_track_id'
-    ))
-df_data %>% summary
-
-write.csv(df_data, './data/df_data.csv')
+    )) %>%
+  separate(WeekID, c("Month", "Day", "Year"), sep = "/") %>%
+  drop_na(week_position)
+df_data
 
 ```
+```{r}
+write.csv(df_data, './data/df_data.csv')
+```
+

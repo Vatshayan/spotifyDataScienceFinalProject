@@ -1,0 +1,57 @@
+---
+title: "Final Project"
+author: "Alison and Walter"
+date: 2020-12-4
+output:
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+# knitr options
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library, include=FALSE}
+library(tidyverse)
+```
+
+# Details on the datasets  
+
+<!-- -------------------------------------------------- -->
+
+### Spotify dataset: 
+To read the csv of the song geature data data, use this code:
+
+```{r read-feature}
+filename <- "./data/df_data.csv"
+df_data <- read_csv(filename)
+df_data
+
+```
+
+
+```{r - basic EDA}
+df_data %>% 
+  arrange(desc(peak_position)) %>% 
+  ggplot() + 
+  geom_point(mapping = aes(x = peak_position, y = week_position, color = weeks_on_chart)) +
+  labs(
+    x = "Maximum Position on Billboard Charts",
+    y = "Where the song is on the chart"
+    
+  )
+  
+```
+```{r}
+df_data %>% 
+  filter(year == 2010) %>%
+  arrange(desc(week_position))%>%
+  ggplot() + 
+  geom_point(mapping = aes(x = bpm, y = week_position, color = genre))
+
+```
+```{r}
+
+```
+
