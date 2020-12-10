@@ -1,0 +1,37 @@
+---
+title: "Final Report - Spotify and Billboard Rankings"
+author: Alison and Walter Villa
+date: 2020-12-15
+output:
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Purpose: 
+
+What song attributes lead towards success on the Billboard charts? 
+
+
+## Background: 
+
+Each year, new songs emerge and become some of the year’s top hits. Whether it's because of a viral video or a certain time of year, new songs come and go onto the Billboard charts. 
+
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

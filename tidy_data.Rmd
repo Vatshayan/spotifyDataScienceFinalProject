@@ -69,6 +69,7 @@ df_data <-df_combined_data %>%
 df_data
 
 ```
+
 ```{r}
 write.csv(df_data, './data/df_data.csv')
 ```
