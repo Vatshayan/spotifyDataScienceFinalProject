@@ -32,7 +32,7 @@ df_data
 
 
 ```{r - basic EDA}
-df_data %>% select(time_signature) %>% summary()
+df_data %>% select(week_position) %>% summary()
 df_data %>% 
 
     arrange(desc(peak_position)) %>% 

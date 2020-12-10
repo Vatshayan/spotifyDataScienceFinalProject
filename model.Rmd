@@ -43,7 +43,7 @@ df_data <- df %>%
   group_by(SongID) %>%
   slice(which.min(peak_position)) %>% #select the row from each song with the lowest peak_position.
   ungroup()  %>%
-  filter(peak_position <=10)
+  filter(Year >=2000)
 ```
 
 # Split Data into training data and validation data
@@ -57,7 +57,7 @@ df_train <-
   slice_sample(n = 80)
 
 df_validate <-
-  df_composite %>%
+  df_data %>%
   rowid_to_column() %>%
   anti_join(
     .,
@@ -87,5 +87,19 @@ fit_basic %>%
   )
 
 
+```
+
+# Model overlay with validation data
+```{r}
+df_validate %>%
+  add_predictions(fit_basic, var = "y_pred") %>%
+
+  ggplot(aes(x = loudness)) +
+  geom_line(aes(y = peak_position, color = "Validation")) +
+  geom_line(aes(y = y_pred, color = "Predicted")) +
+  geom_point(data = df_train, aes(y = peak_position)) +
+
+  scale_color_discrete(name = "") +
+  theme_minimal()
 ```
 
