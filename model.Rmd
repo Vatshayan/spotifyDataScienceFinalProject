@@ -1,0 +1,91 @@
+---
+title: "Final Project"
+author: "Alison and Walter"
+date: 2020-12-14
+output:
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+# knitr options
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(broom)
+library(modelr)
+library(rsample)
+```
+
+# Details on the datasets  
+
+<!-- -------------------------------------------------- -->
+
+### Spotify dataset: 
+To read the csv of the song geature data data, use this code:
+
+```{r read-feature}
+filename <- "./data/df_data.csv"
+df <- read_csv(filename)
+df
+
+```
+
+
+#Tidy the data to one row for each song
+
+```{r}
+df_data <- df %>%
+  filter(week_position == peak_position) %>%
+  group_by(SongID) %>%
+  slice(which.min(peak_position)) %>% #select the row from each song with the lowest peak_position.
+  ungroup()  %>%
+  filter(peak_position <=10)
+```
+
+# Split Data into training data and validation data
+
+```{r split model}
+set.seed(101)
+
+df_train <-
+  df_data %>%
+  rowid_to_column() %>%
+  slice_sample(n = 80)
+
+df_validate <-
+  df_composite %>%
+  rowid_to_column() %>%
+  anti_join(
+    .,
+    df_train,
+    by = "rowid"
+  )
+```
+
+
+# Fit Model
+
+```{r}
+
+## TODO: Fit a model of peak_position on the predictor tempo
+fit_basic <- 
+  df_train %>%
+    lm(
+    data = .,
+    formula = peak_position ~ time_signature + valence + loudness + speechiness + key
+  )
+
+## NOTE: The following computes confidence intervals on regression coefficients
+fit_basic %>%
+  tidy(
+    conf.int = TRUE,
+    conf.level = 0.99
+  )
+
+
+```
+

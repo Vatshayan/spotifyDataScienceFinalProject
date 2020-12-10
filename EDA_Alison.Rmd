@@ -32,8 +32,10 @@ df_data
 
 
 ```{r - basic EDA}
+df_data %>% select(time_signature) %>% summary()
 df_data %>% 
-  arrange(desc(peak_position)) %>% 
+
+    arrange(desc(peak_position)) %>% 
   ggplot() + 
   geom_point(mapping = aes(x = peak_position, y = week_position, color = weeks_on_chart)) +
   labs(
@@ -65,7 +67,7 @@ df_data %>%
   filter(Year == 2010) %>%
   ungroup() %>%
   drop_na(danceability) %>%
-  mutate( dance_bin=cut_width(danceability, width=0.075, boundary=0) ) %>%
+  mutate( dance_bin=cut_width(danceability, width=0.05, boundary=0) ) %>%
   ggplot(mapping = aes(x = dance_bin, y = peak_position)) +
   geom_boxplot() +
   coord_flip()
@@ -117,9 +119,30 @@ df_data %>%
   slice(which.min(peak_position)) %>% #select the row from each song with the lowest peak_position.
   ungroup() %>%
   drop_na(tempo) %>%
-  mutate( tempo_bin=cut_width(tempo, width=10, boundary=0) ) %>%
+  mutate( tempo_bin=cut_width(tempo, width=15, boundary=0) ) %>%
   ggplot(mapping = aes(x = tempo_bin, y = peak_position)) +
   geom_boxplot() +
   coord_flip()
+
+df_data %>%
+  filter(week_position == peak_position) %>%
+  group_by(SongID) %>%
+  slice(which.min(peak_position)) %>% #select the row from each song with the lowest peak_position.
+  ungroup() %>%
+  drop_na(tempo) %>%
+  filter(tempo >=226)
 ```
  
+```{r explore}
+df_data %>%
+  filter(week_position == peak_position) %>%
+  group_by(SongID) %>%
+  slice(which.min(peak_position)) %>% #select the row from each song with the lowest peak_position.
+  ungroup() %>%
+  drop_na(time_signature) %>%
+  mutate( bin=cut_width(time_signature, width=.1, boundary=0) ) %>%
+  ggplot(mapping = aes(x = bin, y = peak_position)) +
+  geom_boxplot() +
+  coord_flip()
+```
+
