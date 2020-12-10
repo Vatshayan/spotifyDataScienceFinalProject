@@ -18,7 +18,7 @@ What song attributes lead towards success on the Billboard charts?
 
 ## Background: 
 
-Each year, new songs emerge and become some of the year’s top hits. Whether it's because of a viral video or a certain time of year, new songs come and go onto the Billboard charts. 
+Each year, new songs emerge and become some of the year’s top hits. Whether it's because of a viral video or a certain time of year, new songs seem to become popular overnight. The Billboard charts are a place in which songs and albums are ranked based on their weekly popularity in the United States. The charts can be ranked in categories such as sales, streams, or airplay. They can also be generated.  
 
 
 
