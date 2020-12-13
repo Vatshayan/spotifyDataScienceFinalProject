@@ -1,6 +1,6 @@
 ---
 title: "Final Report - Spotify and Billboard Rankings"
-author: Alison and Walter Villa
+author: Alison Palmer and Walter Villa
 date: 2020-12-15
 output:
   github_document:

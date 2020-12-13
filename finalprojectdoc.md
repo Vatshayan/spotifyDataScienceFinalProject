@@ -1,6 +1,6 @@
 Final Report - Spotify and Billboard Rankings
 ================
-Alison and Walter Villa
+Alison Palmer and Walter Villa
 2020-12-15
 
   - [Purpose:](#purpose)
