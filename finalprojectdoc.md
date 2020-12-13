@@ -86,10 +86,10 @@ is a non-zero correlation between song attributes and placement on the
 Billboard Top 100 Charts.
 
 After running our model, we got the following confidence intervals for
-the factors. ![](./images/CI_photo.png) As you can see, all of the
+the factors. ![](./images/CI_photo.PNG) As you can see, all of the
 confidence intervals cross 0 except for key.
 
-![](./images/key.png)
+![](./images/key.PNG)
 
 When the model is run only using key as a predicting factor, key’s
 confidence interval does cross zero. This indicates key isn’t a solid
