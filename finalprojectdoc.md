@@ -6,7 +6,8 @@ Alison and Walter Villa
   - [Purpose:](#purpose)
   - [Background:](#background)
   - [Data:](#data)
-  - [Including Plots](#including-plots)
+  - [Model](#model)
+  - [Addition Observations](#addition-observations)
 
 ## Purpose:
 
@@ -61,23 +62,44 @@ The Billboard dataset contains values from each track pulled from the
 Spotify Web API to be able to have information on each track listed on
 the Billboard charts.
 
-``` r
-summary(cars)
-```
+## Model
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+For our model, we decided to use a linear regression model to predict
+the placement of songs on the Billboard top 100 charts based off of
+their attributes. We filtered the initial dataset to only include one
+instance of each song at it’s peak position on the charts. We then
+plotted peak\_position versus a variety of song attributes. From the
+initial analysis, there was no clear factor that predicted peak position
+of a song.
 
-## Including Plots
+We split the dataframe into two random dataframes for training the model
+and validating the model. After evaluating all of the factors by running
+a linear regression model and plotting peak position vs the factors, we
+determined time signature, valence, loudness, speechiness, and key were
+the most likely factors to contribute to peak position.
 
-You can also embed plots, for example:
+*Null Hypothesis Testing*
 
-![](finalprojectdoc_files/figure-gfm/pressure-1.png)<!-- -->
+Null Hypothesis: There is no correlation between song attributes and
+placement on the Billboard Top 100 Charts. Alternate Hypothesis: There
+is a non-zero correlation between song attributes and placement on the
+Billboard Top 100 Charts.
 
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+After running our model, we got the following confidence intervals for
+the factors. ![](./images/CI_photo.png) As you can see, all of the
+confidence intervals cross 0 except for key.
+
+![](./images/key.png)
+
+When the model is run only using key as a predicting factor, key’s
+confidence interval does cross zero. This indicates key isn’t a solid
+indicator for peak position. There is not substantial evidence to
+disprove our null hypothesis.
+
+We then plotted the actual Peak Position on the Billboard Charts versus
+the Predicted Peak Position. The data has been filtered to only show the
+top 10 songs for clarity. The trend persisted for the entire top 100.
+
+![](./images/final_graph.png)
+
+## Addition Observations

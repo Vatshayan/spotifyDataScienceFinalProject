@@ -93,11 +93,29 @@ fit_basic %>%
 ```{r}
 df_validate %>%
   add_predictions(fit_basic, var = "y_pred")  %>%
-
-  ggplot(mapping = aes(x = peak_position, y = y_pred)) +
-  geom_line() +
+  mutate(bin=cut_width(peak_position, width=10, boundary=0) ) %>%
+  ggplot(mapping = aes(x = bin, y = y_pred)) +
+  geom_boxplot() +
   scale_color_discrete(name = "") +
-  theme_minimal()
+  theme_minimal() + 
+  labs(
+    x = "Actual Peak Position on Billboard Charts",
+    y = "Predicted Peak Position on Billboard Charts",
+    title = "Actual vs. Predicted Position on Billboard Charts"
+  )
 
+
+df_validate %>%
+  add_predictions(fit_basic, var = "y_pred")  %>%
+  filter(peak_position <= 10) %>%
+  ggplot(mapping = aes(x = peak_position, y = y_pred)) +
+  geom_point() +
+  scale_color_discrete(name = "") +
+  theme_minimal() + 
+  labs(
+    x = "Actual Peak Position on Billboard Charts",
+    y = "Predicted Peak Position on Billboard Charts",
+    title = "Actual vs. Predicted Position on Billboard Charts"
+  )
 ```
 

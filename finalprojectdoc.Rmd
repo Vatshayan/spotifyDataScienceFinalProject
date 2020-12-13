@@ -31,16 +31,29 @@ Our data is composed of Spotify's top songs by year in the world and top songs r
 
 
 
-```{r cars}
-summary(cars)
-```
 
-## Including Plots
+## Model
 
-You can also embed plots, for example:
+For our model, we decided to use a linear regression model to predict the placement of songs on the Billboard top 100 charts based off of their attributes. We filtered the initial dataset to only include one instance of each song at it's peak position on the charts. We then plotted peak_position versus a variety of song attributes. From the initial analysis, there was no clear factor that predicted peak position of a song. 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+We split the dataframe into two random dataframes for training the model and validating the model. After evaluating all of the factors by running a linear regression model and plotting peak position vs the factors, we determined time signature, valence, loudness, speechiness, and key were the most likely factors to contribute to peak position. 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+*Null Hypothesis Testing*
+
+Null Hypothesis: There is no correlation between song attributes and placement on the Billboard Top 100 Charts.
+Alternate Hypothesis: There is a non-zero correlation between song attributes and placement on the Billboard Top 100 Charts.
+
+After running our model, we got the following confidence intervals for the factors. 
+![](./images/CI_photo.png)
+As you can see, all of the confidence intervals cross 0 except for key. 
+
+![](./images/key.png)
+
+When the model is run only using key as a predicting factor, key's confidence interval does cross zero. This indicates key isn't a solid indicator for peak position. There is not substantial evidence to disprove our null hypothesis.
+
+We then plotted the actual Peak Position on the Billboard Charts versus the Predicted Peak Position. The data has been filtered to only show the top 10 songs for clarity. The trend persisted for the entire top 100.
+
+![](./images/final_graph.png)
+
+## Addition Observations
+
