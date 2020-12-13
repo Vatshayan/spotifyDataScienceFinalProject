@@ -130,7 +130,8 @@ df_data %>%
   slice(which.min(peak_position)) %>% #select the row from each song with the lowest peak_position.
   ungroup() %>%
   drop_na(tempo) %>%
-  filter(tempo >=226)
+  filter(tempo >=214) %>%
+  arrange(desc(tempo))
 ```
  look into these songs more
  
