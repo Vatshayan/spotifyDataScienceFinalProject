@@ -3,9 +3,9 @@ Final Report - Spotify and Billboard Rankings
 Alison Palmer and Walter Villa
 2020-12-15
 
-  - [Purpose:](#purpose)
-  - [Background:](#background)
-  - [[Data](https://data.world/kcmillersean/billboard-hot-100-1958-2017/workspace/file?filename=Hot+100+Audio+Features.xlsx):](#data)
+  - [Purpose](#purpose)
+  - [Background](#background)
+  - [[Data](https://data.world/kcmillersean/billboard-hot-100-1958-2017/workspace/file?filename=Hot+100+Audio+Features.xlsx)](#data)
   - [Model](#model)
   - [Addition Observations](#addition-observations)
   - [Further Exploration and
@@ -13,11 +13,11 @@ Alison Palmer and Walter Villa
   - [Project Repo](#project-repo)
   - [Sources](#sources)
 
-## Purpose:
+## Purpose
 
 What song attributes lead towards success on the Billboard charts?
 
-## Background:
+## Background
 
 Each year, new songs emerge and become some of the year’s top hits.
 Whether it’s because of a viral video or a certain time of year, new
@@ -56,7 +56,7 @@ the Billboard 200, according to the New York Times. As a group, we
 wanted to investigate any potential patterns or trends in songs landing
 on the Billboard charts in correlation to Spotify’s top tracks.
 
-## [Data](https://data.world/kcmillersean/billboard-hot-100-1958-2017/workspace/file?filename=Hot+100+Audio+Features.xlsx):
+## [Data](https://data.world/kcmillersean/billboard-hot-100-1958-2017/workspace/file?filename=Hot+100+Audio+Features.xlsx)
 
 Our data is composed of Spotify’s top songs by year in the world and top
 songs ranked on the Billboard charts. The Spotify dataset contains
