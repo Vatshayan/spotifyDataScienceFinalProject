@@ -21,7 +21,7 @@ library(tidyverse)
 <!-- -------------------------------------------------- -->
 
 ### Spotify dataset: 
-To read the csv of the song geature data data, use this code:
+To read the csv of the song feature data data, use this code:
 
 ```{r read-feature}
 filename <- "./data/df_data.csv"
@@ -131,6 +131,25 @@ df_data %>%
   ungroup() %>%
   drop_na(tempo) %>%
   filter(tempo >=226)
+```
+ look into these songs more
+ 
+ 
+ 
+```{r}
+df_data %>%
+  filter(SongID == "HeartKenny Chandler") %>% 
+  mutate(date = ISOdate(Year, Month, Day)) %>%
+  
+  ggplot(aes(x = date, y = week_position)) +
+  geom_line()
+  
+df_data %>%
+  filter(SongID == "TuffAce Cannon") %>% 
+  mutate(date = ISOdate(Year, Month, Day)) %>%
+  
+  ggplot(aes(x = date, y = week_position)) +
+  geom_line()
 ```
  
 ```{r explore}

@@ -92,14 +92,12 @@ fit_basic %>%
 # Model overlay with validation data
 ```{r}
 df_validate %>%
-  add_predictions(fit_basic, var = "y_pred") %>%
+  add_predictions(fit_basic, var = "y_pred")  %>%
 
-  ggplot(aes(x = loudness)) +
-  geom_line(aes(y = peak_position, color = "Validation")) +
-  geom_line(aes(y = y_pred, color = "Predicted")) +
-  geom_point(data = df_train, aes(y = peak_position)) +
-
+  ggplot(mapping = aes(x = peak_position, y = y_pred)) +
+  geom_line() +
   scale_color_discrete(name = "") +
   theme_minimal()
+
 ```
 
